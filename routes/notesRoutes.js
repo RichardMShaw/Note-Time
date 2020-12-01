@@ -38,7 +38,33 @@ router.post('/notes', (req, res) => {
 })
 
 router.delete('/notes/*', (req, res) => {
-  console.log(req.path)
+  console.log(req.params[0])
+  fs.readFile(path.join(__dirname, "../db/db.json"), 'utf8', (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      let notes = JSON.parse(data)
+      let key = parseInt(req.params[0])
+      let found = -1
+      let len = notes.length
+      for (let i = 0; i < len; i++) {
+        if (notes[i].id === key) {
+          found = i
+          i = len
+        }
+      }
+      if (found !== -1) {
+        notes.splice(found, 1)
+      }
+      fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(notes), (err) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.sendStatus(200)
+        }
+      })
+    }
+  })
 })
 
 module.exports = router
