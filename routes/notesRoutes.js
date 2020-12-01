@@ -21,7 +21,7 @@ router.post('/notes', (req, res) => {
     } else {
       let notes = JSON.parse(data)
       notes.push(req.body)
-      fs.writeFile(path.join(__dirname, "../db/db.json"), notes, (err) => {
+      fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(notes), (err) => {
         if (err) {
           console.log(err)
         } else {
