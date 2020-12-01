@@ -38,7 +38,6 @@ router.post('/notes', (req, res) => {
 })
 
 router.delete('/notes/*', (req, res) => {
-  console.log(req.params[0])
   fs.readFile(path.join(__dirname, "../db/db.json"), 'utf8', (err, data) => {
     if (err) {
       console.log(err)
