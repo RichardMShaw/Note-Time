@@ -21,8 +21,8 @@ router.post('/notes', (req, res) => {
     } else {
       let notes = JSON.parse(data)
       let note = {
-        id: notes[notes.length-1].id + 1,
-        ...res.body
+        id: notes[notes.length - 1].id + 1,
+        ...req.body
 
       }
       notes.push(note)
@@ -30,7 +30,6 @@ router.post('/notes', (req, res) => {
         if (err) {
           console.log(err)
         } else {
-          console.log(req.body)
           res.sendStatus(200)
         }
       })
@@ -39,7 +38,7 @@ router.post('/notes', (req, res) => {
 })
 
 router.delete('/notes/*', (req, res) => {
-  console.log(req)
+  console.log(req.path)
 })
 
 module.exports = router
