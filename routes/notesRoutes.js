@@ -33,9 +33,8 @@ router.post('/notes', (req, res) => {
   })
 })
 
-// router.delete('/notes', (req, res) => {
-//   console.log(req.body)
-//   res.sendStatus(200)
-// })
+router.delete('/notes', (req, res) => {
+  console.log(req)
+})
 
 module.exports = router
