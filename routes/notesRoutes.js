@@ -20,7 +20,12 @@ router.post('/notes', (req, res) => {
       console.log(err)
     } else {
       let notes = JSON.parse(data)
-      notes.push(req.body)
+      let note = {
+        id: notes[notes.length-1].id + 1,
+        ...res.body
+
+      }
+      notes.push(note)
       fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(notes), (err) => {
         if (err) {
           console.log(err)
