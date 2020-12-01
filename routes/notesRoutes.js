@@ -33,7 +33,7 @@ router.post('/notes', (req, res) => {
   })
 })
 
-router.delete('/notes', (req, res) => {
+router.delete('/notes/*', (req, res) => {
   console.log(req)
 })
 
